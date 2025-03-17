@@ -15,6 +15,8 @@ const Home = () => {
               At the heart of Foodastic is our promise to deliver food that’s fast, fresh, and—most importantly—fantastic. Thank you for choosing us to fuel your day, and we can’t wait to serve you again soon!
             </p>
             <hr />
+            <p>Taste, Quality, Convenience - Foodastic</p>
+            <hr />
           </div>
           <div className='p-4 rounded-r-lg bg-[#E0F8E7]'>
             <h1 className='text-2xl mb-2' >Opening hours</h1>
