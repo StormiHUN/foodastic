@@ -2,6 +2,7 @@ import React from 'react'
 import Food from '../components/Food'
 import { useState } from 'react'
 import { useEffect } from 'react'
+import { Link } from 'react-router-dom'
 import Egg from "../assets/egg.png"
 import Fish from "../assets/fish.png"
 import Gluten from "../assets/gluten.png"
@@ -11,7 +12,7 @@ import Nuts from "../assets/nuts.png"
 import Soy from "../assets/soy.png"
 import FancyRadio from '../components/FancyRadio'
 
-const Menu = () => {
+const Menu = ({setToBuy}) => {
 
 
   const foods = [
@@ -42,7 +43,7 @@ const Menu = () => {
         soy: true
       }
     }, {
-      name: "sajtburesz",
+      name: "cajtburesz",
       pic: "https://placehold.co/300x300",
       cost: "1500",
       allergens: {
@@ -55,7 +56,7 @@ const Menu = () => {
         soy: false
       }
     }, {
-      name: "sajtburesz",
+      name: "dajtburesz",
       pic: "https://placehold.co/300x300",
       cost: "1500",
       allergens: {
@@ -68,7 +69,7 @@ const Menu = () => {
         soy: false
       }
     }, {
-      name: "sajtburesz",
+      name: "fajtburesz",
       pic: "https://placehold.co/300x300",
       cost: "1500",
       allergens: {
@@ -145,6 +146,7 @@ const Menu = () => {
   const [fish, setFish] = useState(false)
   const [egg, setEgg] = useState(false)
   const [soy, setSoy] = useState(false)
+  const [cart, setCart] = useState([])
 
   function verifyKcal(toCheck, type){
     let NaN = isNaN(parseFloat(toCheck)) && isFinite(toCheck);
@@ -181,9 +183,34 @@ const Menu = () => {
     searchFood()
   }, [searchName, searchKcalLow, searchKcalHigh, gluten, lactose, nuts, mollusk, fish, egg, soy])
 
+  function indexOfFoodByName(name){
+    for(let i = 0; i < cart.length; i++) if(cart[i].data.name == name) return i
+    return -1
+  }
+
+  function addToCart(item){
+    let index = indexOfFoodByName(item.name)
+    if(index == -1){
+      let temp = {
+        data: item,
+        size: 1
+      }
+      let arr = []
+      if(cart.length > 0){
+        arr = [...cart]
+      }
+      arr.push(temp)
+      setCart([...arr])
+    }else{
+      cart[index].size++
+      setCart([...cart])
+    }
+  }
+
+
   return (
     <div className='overflow-x-hidden'>
-      <div className='flex justify-center'>
+      <div className='flex justify-center gap-4'>
         <div className='bg-white border-2 border-[#93e2ae] rounded-lg p-4 w-fit'>
           <div className='flex gap-2'>
             <input className='p-2 border-2 border-[#93e2ae] rounded-lg' type="text" placeholder='Search food by name' value={searchName} onChange={(e) => setSearchName(e.target.value)} />
@@ -201,10 +228,22 @@ const Menu = () => {
           <FancyRadio control={soy} setControl={setSoy} image={Soy}/>
           </div>
         </div>
+        <div className='bg-white border-2 border-[#93e2ae] rounded-lg p-4 w-[12rem] overflow-y-scroll'>
+          <div className='w-fit flex align-middle gap-6'>
+          <p className='text-2xl'>Cart:</p>
+          {cart.length == 0 ? "" : <Link onClick={() => setToBuy(cart)} className='mt-auto' to={"/checkout"}>Chekout</Link>}
+            
+          </div>
+          <div className='w-fit justify-start h-full'>
+            {
+              (cart.length > 0 ? cart.map((item, index) => <p key={index}>{item.data.name} - {item.size}x</p>) : <p>Your cart is empty.</p>)
+            }
+          </div>
+        </div>
       </div>
       <div className='flex justify-center pb-4'>
         <div className=' w-fit h-fit grid grid-cols-4 p-4 gap-4'>
-          {foods.map((data) => <Food data={data} />)}
+          {foods.map((data) => <Food data={data} addToCart={addToCart} />)}
         </div>
       </div>
     </div>

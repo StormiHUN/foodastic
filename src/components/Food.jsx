@@ -3,7 +3,7 @@ import Allergens from './Allergens'
 import Cart from "../assets/cart.svg"
 import CartGreen from "../assets/cartgreen.svg"
 import { useState } from 'react'
-const Food = ({ data }) => {
+const Food = ({ data, addToCart }) => {
 
     const [onhover, setonhover] = useState(false)
 
@@ -20,7 +20,7 @@ const Food = ({ data }) => {
                 </div>
             </div>
             <div className='p-1'>
-                <button className='flex gap-2 p-1 border-2 border-white hover:border-[#93e2ae] transition-all rounded-full' onMouseOver={() => setonhover(true)}  onMouseEnter={() => setonhover(true)} onMouseLeave={() => setonhover(false)}><img className='p-1' src={onhover ? CartGreen : Cart} /></button>
+                <button onClick={() => addToCart(data)} className='flex gap-2 p-1 border-2 border-white hover:border-[#93e2ae] transition-all rounded-full'><img className='p-1' src={Cart} /></button>
             </div>
         </div>
     )
