@@ -12,7 +12,7 @@ import Nuts from "../assets/nuts.png"
 import Soy from "../assets/soy.png"
 import FancyRadio from '../components/FancyRadio'
 
-const Menu = ({setToBuy}) => {
+const Menu = ({cart, setCart, refresh, setRefresh}) => {
 
 
   const foods = [
@@ -136,9 +136,10 @@ const Menu = ({setToBuy}) => {
     },
   ]
 
+
   const [searchName, setSearchName] = useState("")
-  const [searchKcalLow, setSearchKcalLow] = useState(null)
-  const [searchKcalHigh, setSearchKcalHigh] = useState(null)
+  const [searchKcalLow, setSearchKcalLow] = useState(0)
+  const [searchKcalHigh, setSearchKcalHigh] = useState(0)
   const [gluten, setGluten] = useState(false)
   const [lactose, setLactose] = useState(false)
   const [nuts, setNuts] = useState(false)
@@ -146,7 +147,7 @@ const Menu = ({setToBuy}) => {
   const [fish, setFish] = useState(false)
   const [egg, setEgg] = useState(false)
   const [soy, setSoy] = useState(false)
-  const [cart, setCart] = useState([])
+  //const [refresh, setRefresh] = useState(0)
 
   function verifyKcal(toCheck, type){
     let NaN = isNaN(parseFloat(toCheck)) && isFinite(toCheck);
@@ -176,37 +177,16 @@ const Menu = ({setToBuy}) => {
       body.maxkcal = body.minkcal
       body.minkcal = temp
     }
-    console.log(body)
   }
 
   useEffect(() => {
     searchFood()
   }, [searchName, searchKcalLow, searchKcalHigh, gluten, lactose, nuts, mollusk, fish, egg, soy])
 
-  function indexOfFoodByName(name){
-    for(let i = 0; i < cart.length; i++) if(cart[i].data.name == name) return i
-    return -1
-  }
+  
 
-  function addToCart(item){
-    let index = indexOfFoodByName(item.name)
-    if(index == -1){
-      let temp = {
-        data: item,
-        size: 1
-      }
-      let arr = []
-      if(cart.length > 0){
-        arr = [...cart]
-      }
-      arr.push(temp)
-      setCart([...arr])
-    }else{
-      cart[index].size++
-      setCart([...cart])
-    }
-  }
-
+  useEffect(() => {
+  },[cart,refresh])
 
   return (
     <div className='overflow-x-hidden'>
@@ -231,19 +211,19 @@ const Menu = ({setToBuy}) => {
         <div className='bg-white border-2 border-[#93e2ae] rounded-lg p-4 w-[12rem] overflow-y-scroll'>
           <div className='w-fit flex align-middle gap-6'>
           <p className='text-2xl'>Cart:</p>
-          {cart.length == 0 ? "" : <Link onClick={() => setToBuy(cart)} className='mt-auto' to={"/checkout"}>Chekout</Link>}
+          {cart.length == 0 ? "" : <Link className='mt-auto' to={"/checkout"}>Chekout</Link>}
             
           </div>
           <div className='w-fit justify-start h-full'>
             {
-              (cart.length > 0 ? cart.map((item, index) => <p key={index}>{item.data.name} - {item.size}x</p>) : <p>Your cart is empty.</p>)
+              (cart.length > 0 ? cart.map((item, index) => <p key={"a"+index+item.size+cart.length}>{item.data.name} - {item.size}x</p>) : <p>Your cart is empty.</p>)
             }
           </div>
         </div>
       </div>
       <div className='flex justify-center pb-4'>
         <div className=' w-fit h-fit grid grid-cols-4 p-4 gap-4'>
-          {foods.map((data) => <Food data={data} addToCart={addToCart} />)}
+          {foods.map((data,i) => <Food key={"b"+i+data.cost+cart.length} data={data} cart={cart} setCart={setCart} setRefresh={setRefresh} />)}
         </div>
       </div>
     </div>

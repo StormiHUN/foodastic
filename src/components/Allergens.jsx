@@ -23,7 +23,7 @@ const Allergens = ({ data }) => {
     return (
         <div className=' flex gap-1 align-middle'>
             <p>Allergens:</p>
-            {allers.map(pic => <img src={pic} />)}
+            {allers.map((pic,i) => <img key={"c"+i} src={pic} />)}
         </div>
     )
 }
