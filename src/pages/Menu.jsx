@@ -11,11 +11,16 @@ import Mollusk from "../assets/mollusk.png"
 import Nuts from "../assets/nuts.png"
 import Soy from "../assets/soy.png"
 import FancyRadio from '../components/FancyRadio'
+import { useContext } from 'react'
+import { CartContext } from '../App'
 
-const Menu = ({cart, setCart, refresh, setRefresh}) => {
+const Menu = () => {
 
+  const {cart, setCart} = useContext(CartContext)
 
-  const foods = [
+  const url = "http://10.201.2.13:88"
+
+  const [foods,setFoods] = useState([
     {
       name: "sajtburesz",
       pic: "https://placehold.co/300x300",
@@ -134,19 +139,19 @@ const Menu = ({cart, setCart, refresh, setRefresh}) => {
         soy: false
       }
     },
-  ]
+  ])
 
 
   const [searchName, setSearchName] = useState("")
   const [searchKcalLow, setSearchKcalLow] = useState(0)
   const [searchKcalHigh, setSearchKcalHigh] = useState(0)
-  const [gluten, setGluten] = useState(false)
-  const [lactose, setLactose] = useState(false)
-  const [nuts, setNuts] = useState(false)
-  const [mollusk, setMollusk] = useState(false)
-  const [fish, setFish] = useState(false)
-  const [egg, setEgg] = useState(false)
-  const [soy, setSoy] = useState(false)
+  const [gluten, setGluten] = useState(true)
+  const [lactose, setLactose] = useState(true)
+  const [nuts, setNuts] = useState(true)
+  const [mollusk, setMollusk] = useState(true)
+  const [fish, setFish] = useState(true)
+  const [egg, setEgg] = useState(true)
+  const [soy, setSoy] = useState(true)
   //const [refresh, setRefresh] = useState(0)
 
   function verifyKcal(toCheck, type){
@@ -155,6 +160,12 @@ const Menu = ({cart, setCart, refresh, setRefresh}) => {
       if(type == "low") return 0
       else return 999999
     }else return toCheck
+  }
+
+  const getFoods = async () => {
+    const resp = await fetch(url+"/foods")
+    const json = await resp.json()
+    setFoods(json)
   }
 
   async function searchFood() {
@@ -177,6 +188,28 @@ const Menu = ({cart, setCart, refresh, setRefresh}) => {
       body.maxkcal = body.minkcal
       body.minkcal = temp
     }
+
+    if(searchName == "" && searchKcalLow == "0" && searchKcalHigh == "0" && !gluten && !lactose && !nuts && !mollusk && !fish && !egg && !soy){
+      getFoods()
+    }else{ 
+      const resp = await fetch(url+"/foods?"+ new URLSearchParams({
+        name: searchName,
+        minkcal: verifyKcal(searchKcalLow,"low"),
+        maxkcal: verifyKcal(searchKcalHigh,"high"),
+        gluten: gluten,
+        lactose: lactose,
+        nuts: nuts,
+        mollusk: mollusk,
+        fish: fish,
+        egg: egg,
+        soy: soy
+      }))
+      const json = await resp.json()
+      if(!json.error){
+        console.log(json)
+        setFoods(json)
+      }
+    }
   }
 
   useEffect(() => {
@@ -186,7 +219,11 @@ const Menu = ({cart, setCart, refresh, setRefresh}) => {
   
 
   useEffect(() => {
-  },[cart,refresh])
+  },[cart])
+
+  useEffect(() => {
+    getFoods()
+  },[])
 
   return (
     <div className='overflow-x-hidden'>
@@ -208,22 +245,22 @@ const Menu = ({cart, setCart, refresh, setRefresh}) => {
           <FancyRadio control={soy} setControl={setSoy} image={Soy}/>
           </div>
         </div>
-        <div className='bg-white border-2 border-[#93e2ae] rounded-lg p-4 w-[12rem] overflow-y-scroll'>
-          <div className='w-fit flex align-middle gap-6'>
+        <div className='bg-white border-2 border-[#93e2ae] rounded-lg p-4 w-[14rem] overflow-y-scroll'>
+          <div className='flex align-middle justify-center gap-6'>
           <p className='text-2xl'>Cart:</p>
           {cart.length == 0 ? "" : <Link className='mt-auto' to={"/checkout"}>Chekout</Link>}
             
           </div>
-          <div className='w-fit justify-start h-full'>
+          <div className='w-fit justify-start h-20'>
             {
-              (cart.length > 0 ? cart.map((item, index) => <p key={"a"+index+item.size+cart.length}>{item.data.name} - {item.size}x</p>) : <p>Your cart is empty.</p>)
+              (cart.length > 0 ? cart.map((item, index) => <p key={"a"+index+item.size+cart.length}>{item.data.name} - {item.size < 10 ? "0"+item.size : item.size}x</p>) : <p>Your cart is empty.</p>)
             }
           </div>
         </div>
       </div>
       <div className='flex justify-center pb-4'>
         <div className=' w-fit h-fit grid grid-cols-4 p-4 gap-4'>
-          {foods.map((data,i) => <Food key={"b"+i+data.cost+cart.length} data={data} cart={cart} setCart={setCart} setRefresh={setRefresh} />)}
+          {foods.map((data,i) => <Food key={"b"+i+data.cost+cart.length} data={data} cart={cart} setCart={setCart} />)}
         </div>
       </div>
     </div>

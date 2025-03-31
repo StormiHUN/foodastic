@@ -3,10 +3,14 @@ import { Outlet, Link } from 'react-router-dom'
 import NavElement from './components/NavElement'
 import { useState } from 'react'
 import Logo from "./assets/logo.png"
+import { UserContext } from './App'
+import { useContext } from 'react'
+import ProfilePage from "./pages/ProfilePage"
 
 const Layout = () => {
 
     const [selected, setSelected] = useState("Home")
+    const [user, setUser] = useContext(UserContext)
 
     return (
         <div className='flex flex-col gap-4 text-center h-screen'>
@@ -22,7 +26,9 @@ const Layout = () => {
                     <NavElement label="Restaurants" to="/restaurants" selected={selected} setSelected={setSelected} />
                 </div>
                 <div>
-
+                    {user == [] ? <Link to="/login">
+                    
+                    </Link> : <ProfilePage data={user}/>}
                 </div>
             </div>
             <Outlet />
