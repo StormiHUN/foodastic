@@ -8,6 +8,7 @@ import { useState, createContext } from "react";
 import { useContext } from "react";
 import Login from "./pages/Login";
 import Register from "./pages/Register"
+import ProfilePage from "./pages/ProfilePage";
 
 export const CartContext = createContext([]);
 export const UserContext = createContext([])
@@ -27,6 +28,7 @@ function App() {
         { path: '/checkout', element: <Checkout /> },
         { path: '/login', element: <Login /> },
         { path: '/register', element: <Register /> },
+        { path: '/user', element: <ProfilePage /> },
       ],
     },
   ]);

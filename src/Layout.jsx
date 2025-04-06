@@ -27,7 +27,7 @@ const Layout = () => {
                 </div>
                 <div>
                     {user == undefined ? 
-                    <Link className='p-4 flex align-middle hover:underline hover:bg-[#C2F0D1] transition-all' to="/login">
+                    <Link className='p-4 flex align-middle hover:underline hover:bg-[#C2F0D1] transition-all' onClick={() => setSelected("Login")} to="/login">
                         Login
                     </Link>
                      : <Link to="/user">User</Link>}
