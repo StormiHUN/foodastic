@@ -23,8 +23,8 @@ const Menu = () => {
   const [foods,setFoods] = useState([
     {
       name: "sajtburesz",
-      pic: "https://placehold.co/300x300",
-      cost: "1500",
+      image: "https://placehold.co/300x300",
+      price: "1500",
       allergens: {
         gluten: false,
         lactose: true,
@@ -36,8 +36,8 @@ const Menu = () => {
       }
     }, {
       name: "bajtsuresz",
-      pic: "https://placehold.co/300x300",
-      cost: "1500",
+      image: "https://placehold.co/300x300",
+      price: "1500",
       allergens: {
         gluten: false,
         lactose: true,
@@ -49,8 +49,8 @@ const Menu = () => {
       }
     }, {
       name: "cajtburesz",
-      pic: "https://placehold.co/300x300",
-      cost: "1500",
+      image: "https://placehold.co/300x300",
+      price: "1500",
       allergens: {
         gluten: false,
         lactose: true,
@@ -62,8 +62,8 @@ const Menu = () => {
       }
     }, {
       name: "dajtburesz",
-      pic: "https://placehold.co/300x300",
-      cost: "1500",
+      image: "https://placehold.co/300x300",
+      price: "1500",
       allergens: {
         gluten: false,
         lactose: true,
@@ -75,8 +75,8 @@ const Menu = () => {
       }
     }, {
       name: "fajtburesz",
-      pic: "https://placehold.co/300x300",
-      cost: "1500",
+      image: "https://placehold.co/300x300",
+      price: "1500",
       allergens: {
         gluten: false,
         lactose: true,
@@ -88,8 +88,8 @@ const Menu = () => {
       }
     }, {
       name: "sajtburesz",
-      pic: "https://placehold.co/300x300",
-      cost: "1500",
+      image: "https://placehold.co/300x300",
+      price: "1500",
       allergens: {
         gluten: false,
         lactose: true,
@@ -101,8 +101,8 @@ const Menu = () => {
       }
     }, {
       name: "sajtburesz",
-      pic: "https://placehold.co/300x300",
-      cost: "1500",
+      image: "https://placehold.co/300x300",
+      price: "1500",
       allergens: {
         gluten: false,
         lactose: true,
@@ -114,8 +114,8 @@ const Menu = () => {
       }
     }, {
       name: "sajtburesz",
-      pic: "https://placehold.co/300x300",
-      cost: "1500",
+      image: "https://placehold.co/300x300",
+      price: "1500",
       allergens: {
         gluten: false,
         lactose: true,
@@ -127,8 +127,8 @@ const Menu = () => {
       }
     }, {
       name: "sajtburesz",
-      pic: "https://placehold.co/300x300",
-      cost: "1500",
+      image: "https://placehold.co/300x300",
+      price: "1500",
       allergens: {
         gluten: false,
         lactose: true,
@@ -196,13 +196,15 @@ const Menu = () => {
         name: searchName,
         minkcal: verifyKcal(searchKcalLow,"low"),
         maxkcal: verifyKcal(searchKcalHigh,"high"),
-        gluten: gluten,
-        lactose: lactose,
-        nuts: nuts,
-        mollusk: mollusk,
-        fish: fish,
-        egg: egg,
-        soy: soy
+        allergens: JSON.stringify([
+          {gluten: gluten},
+          {lactose: lactose},
+          {nuts: nuts},
+          {mollusk: mollusk},
+          {fish: fish},
+          {egg: egg},
+          {soy: soy}
+        ])
       }))
       const json = await resp.json()
       if(!json.error){
