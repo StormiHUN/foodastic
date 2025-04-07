@@ -7,7 +7,6 @@ const Food = ({ data, cart, setCart }) => {
 
   const [count, setCount] = useState(1)
 
-  console.log(data)
 
   function indexOfFoodByName(name) {
     for (let i = 0; i < cart.length; i++) if (cart[i].data.name == name) return i
