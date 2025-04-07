@@ -44,7 +44,7 @@ const Food = ({ data, cart, setCart }) => {
           {/*<Allergens data={data.allergens} />*/}
         </div>
         <div className='my-auto'>
-          <p className='text-xl'>${data.price}</p>
+          <p className='text-xl'>{data.price},- Ft</p>
         </div>
       </div>
       <div className='flex justify-between p-1'>

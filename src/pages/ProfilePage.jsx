@@ -5,9 +5,14 @@ import UserProfilePage from './RolePages/UserProfilePage'
 import AdminProfilePage from './RolePages/AdminProfilePage'
 import RestaurantProfilePage from './RolePages/RestaurantProfilePage'
 import { useEffect } from 'react'
+import { UserContext } from '../App'
+import { useContext } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 const ProfilePage = ({ data }) => {
 
+  const navigate = useNavigate()
+  const {user, setUser} = useContext(UserContext)
   const [role, setRole] = useState("user")
   const [Page, setPage] = useState(<Notfound />)
 
@@ -19,7 +24,11 @@ const ProfilePage = ({ data }) => {
   }, [])
 
   return (
-    <div></div>
+    <div>
+
+      <input type='button' onClick={() => {navigate("/login").then(setUser(undefined))}} value={"Logout user: " + user.email}/>
+
+    </div>
   )
 }
 

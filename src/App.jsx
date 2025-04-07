@@ -20,10 +20,10 @@ function App() {
   const router = createBrowserRouter([
     {
       path: '/',
-      element: <Layout />, 
+      element: <Layout />,
       children: [
-        { path: '', element: <Home /> }, 
-        { path: '/menu', element: <Menu /> }, 
+        { path: '', element: <Home /> },
+        { path: '/menu', element: <Menu /> },
         { path: '/restaurants', element: <Restaurants /> },
         { path: '/checkout', element: <Checkout /> },
         { path: '/login', element: <Login /> },
@@ -34,11 +34,13 @@ function App() {
   ]);
 
   return (
-    <CartContext.Provider value={{ cart, setCart }}>
-      <div className="bgImage w-screen h-screen">
-        <RouterProvider router={router} />
-      </div>
-    </CartContext.Provider>
+    <UserContext.Provider value={{ user, setUser }}>
+      <CartContext.Provider value={{ cart, setCart }}>
+        <div className="bgImage w-screen h-screen">
+          <RouterProvider router={router} />
+        </div>
+      </CartContext.Provider>
+    </UserContext.Provider>
   );
 }
 

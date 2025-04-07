@@ -189,7 +189,7 @@ const Menu = () => {
       body.minkcal = temp
     }
 
-    if(searchName == "" && searchKcalLow == "0" && searchKcalHigh == "0" && !gluten && !lactose && !nuts && !mollusk && !fish && !egg && !soy){
+    if(searchName == "" && searchKcalLow == "0" && searchKcalHigh == "0" && gluten && lactose && nuts && mollusk && fish && egg && soy){
       getFoods()
     }else{ 
       const resp = await fetch(url+"/foods?"+ new URLSearchParams({
@@ -223,9 +223,6 @@ const Menu = () => {
   useEffect(() => {
   },[cart])
 
-  useEffect(() => {
-    getFoods()
-  },[])
 
   return (
     <div className='overflow-x-hidden'>

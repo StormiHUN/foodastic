@@ -10,7 +10,7 @@ import ProfilePage from "./pages/ProfilePage"
 const Layout = () => {
 
     const [selected, setSelected] = useState("Home")
-    const [user, setUser] = useContext(UserContext)
+    const {user, setUser} = useContext(UserContext)
 
     return (
         <div className='flex flex-col gap-4 text-center h-screen'>
@@ -30,7 +30,7 @@ const Layout = () => {
                     <Link className='p-4 flex align-middle hover:underline hover:bg-[#C2F0D1] transition-all' onClick={() => setSelected("Login")} to="/login">
                         Login
                     </Link>
-                     : <Link to="/user">User</Link>}
+                     : <Link className='p-4 flex align-middle hover:underline hover:bg-[#C2F0D1] transition-all' to="/user">User</Link>}
                 </div>
             </div>
             <Outlet />

@@ -2,19 +2,37 @@ import React from 'react'
 import { useState } from 'react'
 import { UserContext } from '../App'
 import { useContext } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 const Login = () => {
 
-  const url = "http://10.201.2.13/login"
+  const url = "http://10.201.2.13:88"
 
-  const [user, setUser] = useContext(UserContext)
+  const navigate = useNavigate()
+  const {user, setUser} = useContext(UserContext)
   const [email, setEmail] = useState("")
   const [psw, setPsw] = useState("")
+  const [err, setErr] = useState("")
 
   async function login() {
-      const resp = await fetch(url)
+      const resp = await fetch(url+"/login",{
+        method: "POST",
+        headers: {"Content-Type" : "application/json"},
+        body: JSON.stringify({email: email, password: psw})
+      })
       const json = await resp.json()
+      console.log(json)
+      if(!json.error){
+        setUser(json)
+      }else if(resp.status == 404){
+        setErr("User not found!")
+        return
+      }else if(resp.status == 401){
+        setErr("Wrong password!")
+        return
+      }
+      
+      navigate("/user")
   }
 
   return (
@@ -26,10 +44,11 @@ const Login = () => {
           <hr />
         </div>
         <label className='w-fit text-sm' htmlFor="email">Email</label>
-        <input className='p-2 border-1 border-gray-400 rounded-sm mb-2' type="text" placeholder='Email' value={email} onChange={(e) => setEmail(e.target.value)} id="email" />
+        <input className='p-2 border-1 border-gray-400 rounded-sm mb-2' type="text" placeholder='Email' value={email} onChange={(e) => {setEmail(e.target.value); setErr("")}} id="email" />
         <label className='w-fit text-sm' htmlFor="password">Password</label>
-        <input className='p-2 border-1 border-gray-400 rounded-sm mb-2' type="password" placeholder='Password' value={psw} onChange={(e) => setPsw(e.target.value)} id="password" />
+        <input className='p-2 border-1 border-gray-400 rounded-sm mb-2' type="password" placeholder='Password' value={psw} onChange={(e) => {setPsw(e.target.value); setErr("")}} id="password" />
         <input className='p-2 w-full border-1 border-gray-400 rounded-sm hover:bg-[#C2F0D1] hover:border-[#355e3b] transition-all cursor-pointer' type="button" value="Login" onClick={() => login()} />
+        {err != "" ? <p className='text-red-500'>{err}</p> : ""}
         <p>Dont have an account? Register one <Link to="/register" className="text-blue-600 underline decoration-blue-600">Here</Link>!</p>
       </div>
     </div>
