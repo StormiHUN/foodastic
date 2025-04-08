@@ -5,3 +5,88 @@
     background-size: cover;
     background-repeat: no-repeat;
 }
+
+@media only screen and (max-width: 530px) {
+    .smallScreenGrid {
+        grid-template-columns: repeat(1, minmax(0, 1fr));
+    }
+    .smallScreenGridBorder {
+        border-bottom: 2px solid #93e2ae;
+        padding-bottom: 0.5rem;
+    }
+
+    .hideImage{
+        display: none;
+    }
+
+    
+    
+  }
+
+  @media only screen and (max-width: 900px) { 
+    .smallScreenNav{
+        padding-inline: 1rem;
+    }
+
+    .smallScreenRestaurant{
+        flex-direction: column;
+    }
+
+    .smallScreenHome{
+        grid-template-columns: repeat(1, minmax(0, 1fr));
+        padding: 5px;
+        margin: 0px;
+        font-size: 12pt;
+    }
+
+    .smallScreenHomeContainer{
+        padding: 5px;
+    }
+
+    .smallScreenBase{
+        overflow-y: visible;
+        padding: 0;
+    }
+
+    .smallScreenFoodasticText{
+        display: none;
+    }
+
+    .smallScreenHomeFlex{
+        display: flex;
+        flex: 0;
+        margin-inline: -34%;
+    }
+
+  }
+
+  @media only screen and (max-width: 768px) {
+    .foodCardGridMd{
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media only screen and (max-width: 425px) {
+    .foodCardGridMd{
+        grid-template-columns: repeat(1, minmax(0, 1fr));
+    }
+  }
+
+  @media only screen and (max-width: 926px) {
+    .searchInterface{
+        flex-direction: column;
+        margin-inline: 1rem;
+    }
+
+  }
+
+  @media only screen and (max-width: 678px) {
+    .smallScreenIcons{
+        flex-wrap: wrap;
+    }
+    .smallScreenFlexInterface{
+        flex-direction: column  ;
+    }
+  }
+
+  

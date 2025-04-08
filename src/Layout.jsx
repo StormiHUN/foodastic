@@ -5,7 +5,6 @@ import { useState } from 'react'
 import Logo from "./assets/logo.png"
 import { UserContext } from './App'
 import { useContext } from 'react'
-import ProfilePage from "./pages/ProfilePage"
 
 const Layout = () => {
 
@@ -13,11 +12,11 @@ const Layout = () => {
     const {user, setUser} = useContext(UserContext)
 
     return (
-        <div className='flex flex-col gap-4 text-center h-screen'>
+        <div className='flex flex-col gap-4 text-center h-screen overflow-x-hidden'>
             <div className=' flex border-b-2 bg-white border-[#355e3b]'>
-                <div className='cursor-pointer' onClick={() => setSelected("Home")}>
+                <div className='cursor-pointer hideImage' onClick={() => setSelected("Home")}>
                     <Link to="/">
-                    <img className='w-[3vw]' src={Logo} alt="" />
+                    <img className='w-16' src={Logo} alt="" />
                     </Link>
                 </div>
                 <div className='flex justify-center w-full'>

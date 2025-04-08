@@ -10,13 +10,16 @@ import Login from "./pages/Login";
 import Register from "./pages/Register"
 import ProfilePage from "./pages/ProfilePage";
 import ChooseRestaurant from "./pages/ChooseRestaurant";
+import UserProfilePage from "./pages/RolePages/UserProfilePage";
+import AdminProfilePage from "./pages/RolePages/AdminProfilePage";
+import RestaurantProfilePage from "./pages/RolePages/RestaurantProfilePage";
 
 export const CartContext = createContext([]);
 export const UserContext = createContext([])
 
 function App() {
   const [cart, setCart] = useState([]);
-  const [user, setUser] = useState([])
+  const [user, setUser] = useState({user_id: 1, first_name: "fname", last_name: "lname", email: "anyd@budos.xd", role: "user"})
 
   const router = createBrowserRouter([
     {
@@ -31,6 +34,9 @@ function App() {
         { path: '/register', element: <Register /> },
         { path: '/user', element: <ProfilePage /> },
         { path: '/chooserestauran', element: <ChooseRestaurant /> },
+        { path: '/user/user', element: <UserProfilePage /> },
+        { path: '/user/admin', element: <AdminProfilePage /> },
+        { path: '/user/restaurant', element: <RestaurantProfilePage /> },
       ],
     },
   ]);

@@ -2,10 +2,10 @@ import React from 'react'
 import FoodasticText from "/src/assets/foodastic.png"
 const Home = () => {
   return (
-    <div>
-      <div className='flex justify-center'>
-        <div className='m-4 p-4 w-[50%] bg-[#93e2ae] grid grid-cols-4 rounded-lg'>
-          <div className='p-4 rounded-l-lg col-span-3 border-r-2 border-[#93e2ae] bg-[#E0F8E7]'>
+    <div className='overflow-y-hidden smallScreenBase'>
+      <div className='flex justify-center smallScreenHomeFlex'>
+        <div className='m-4 p-4 w-[50%] bg-[#93e2ae] grid grid-cols-4 rounded-lg smallScreenHome'>
+          <div className='p-4 rounded-l-lg col-span-3 border-r-2 border-[#93e2ae] bg-[#E0F8E7] smallScreenHomeContainer'>
             <h1 className='text-2xl'>About us</h1>
             <hr />
             <p>
@@ -18,7 +18,7 @@ const Home = () => {
             <p>Taste, Quality, Convenience - Foodastic</p>
             <hr />
           </div>
-          <div className='p-4 rounded-r-lg bg-[#E0F8E7]'>
+          <div className='p-4 rounded-r-lg bg-[#E0F8E7] smallScreenHomeContainer'>
             <h1 className='text-2xl mb-2' >Opening hours</h1>
             <hr />
             <p>10:00 - 22:00</p>
@@ -33,7 +33,7 @@ const Home = () => {
           </div>
         </div>
       </div>
-      <div className='flex justify-center'>
+      <div className='flex justify-center smallScreenFoodasticText'>
         <img src={FoodasticText} alt="" />
       </div>
     </div>

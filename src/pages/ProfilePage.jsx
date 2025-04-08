@@ -1,26 +1,19 @@
 import React from 'react'
-import { useState } from 'react'
-import Notfound from "./NotFound"
-import UserProfilePage from './RolePages/UserProfilePage'
-import AdminProfilePage from './RolePages/AdminProfilePage'
-import RestaurantProfilePage from './RolePages/RestaurantProfilePage'
 import { useEffect } from 'react'
 import { UserContext } from '../App'
 import { useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
 
-const ProfilePage = ({ data }) => {
+const ProfilePage = () => {
 
   const navigate = useNavigate()
   const {user, setUser} = useContext(UserContext)
-  const [role, setRole] = useState("user")
-  const [Page, setPage] = useState(<Notfound />)
 
 
   useEffect(() => {
-    if (role == "user") setPage(<UserProfilePage data={data} />)
-    else if (role == "admin") setPage(<AdminProfilePage data={data} />)
-    else if (role == "restaurant") setPage(<RestaurantProfilePage data={data} />)
+    if (user.role == "user") navigate("/user/user") 
+    else if (user.role == "admin") navigate("/user/admin")
+    else if (user.role == "restaurant") navigate("/user/restaurnat")
   }, [])
 
   return (

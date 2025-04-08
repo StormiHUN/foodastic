@@ -226,15 +226,21 @@ const Menu = () => {
 
   return (
     <div className='overflow-x-hidden'>
-      <div className='flex justify-center gap-4'>
-        <div className='bg-white border-2 border-[#93e2ae] rounded-lg p-4 w-fit'>
-          <div className='flex gap-2'>
+      <div className='flex justify-center gap-4 searchInterface searchInterfaceCenter'>
+
+        <div className='bg-white border-2 border-[#93e2ae] rounded-lg p-4  flex flex-col'>
+          <div className='flex gap-2 smallScreenFlexInterface'>
             <input className='p-2 border-2 border-[#93e2ae] rounded-lg' type="text" placeholder='Search food by name' value={searchName} onChange={(e) => setSearchName(e.target.value)} />
             <input className='p-2 border-2 border-[#93e2ae] rounded-lg' type="number" placeholder='Low threshold (Kcal)' value={searchKcalLow} onChange={(e) => setSearchKcalLow(e.target.value)} />
             <input className='p-2 border-2 border-[#93e2ae] rounded-lg' type="number" placeholder='High threshold (Kcal)' value={searchKcalHigh} onChange={(e) => setSearchKcalHigh(e.target.value)} />
           </div>
-          <div className='mt-2 flex gap-2'>
+          <div className='mt-2 flex gap-2 smallScreenFlexInterface'>
+            <div>
             <p className='text-2xl'>Exclude:</p>
+
+            </div>
+            <div className='smallScreenIcons'>
+
           <FancyRadio control={gluten} setControl={setGluten} image={Gluten}/>
           <FancyRadio control={lactose} setControl={setLactose} image={Lactose}/>
           <FancyRadio control={nuts} setControl={setNuts} image={Nuts}/>
@@ -242,8 +248,10 @@ const Menu = () => {
           <FancyRadio control={fish} setControl={setFish} image={Fish}/>
           <FancyRadio control={egg} setControl={setEgg} image={Egg}/>
           <FancyRadio control={soy} setControl={setSoy} image={Soy}/>
+            </div>
           </div>
         </div>
+
         <div className='bg-white border-2 border-[#93e2ae] rounded-lg p-4 w-[14rem] overflow-y-scroll'>
           <div className='flex align-middle justify-center gap-6'>
           <p className='text-2xl'>Cart:</p>
@@ -258,7 +266,7 @@ const Menu = () => {
         </div>
       </div>
       <div className='flex justify-center pb-4'>
-        <div className=' w-fit h-fit grid grid-cols-4 p-4 gap-4'>
+        <div className=' w-fit h-fit grid grid-cols-4 p-4 gap-4 foodCardGridMd'>
           {foods.map((data,i) => <Food key={"b"+i+data.cost+cart.length} data={data} cart={cart} setCart={setCart} />)}
         </div>
       </div>
