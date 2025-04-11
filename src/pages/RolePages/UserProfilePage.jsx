@@ -2,16 +2,25 @@ import React from 'react'
 import { UserContext } from '../../App'
 import { useContext, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { useState } from 'react'
+import HistoryCard from '../../components/HistoryCard'
 
 const UserProfilePage = () => {
 
   const { user, setUser } = useContext(UserContext)
   const navigate = useNavigate()
+  const [history, setHistory] = useState(["sajt","sajt","sajt","sajt","sajt","sajt","sajt","sajt","sajt","sajt","sajt","sajt","sajt","sajt","sajt"])
 
   useEffect(() => {
     if (user.role == "user") navigate("/user/user")
     else if (user.role == "admin") navigate("/user/admin")
     else if (user.role == "restaurant") navigate("/user/restaurnat")
+    async function getHistotry() {
+      //const resp = await fetch("http://10.201.2.13/orderhistory/"+user.user_id)
+      //const json = await resp.json()
+      //setHistory(json)
+    }
+    getHistotry()
   }, [])
 
   return (
@@ -43,6 +52,7 @@ const UserProfilePage = () => {
             <input className='p-2 border-2 border-gray-400 rounded-lg hover:border-[#355e3b] hover:bg-[#C2F0D1] transition-all' type="button" value="Change password" />  
           </div>
         </div>
+        <button onClick={() =>{ navigate("/") ;setUser(undefined)}} className='mt-4 border-2 rounded-lg border-[#93e2ae] bg-white px-4 py-2 hover:border-[#355e3b] hover:bg-[#C2F0D1] hover:cursor-pointer transition-all'>Logout</button>
       </div>
 
     </div>
