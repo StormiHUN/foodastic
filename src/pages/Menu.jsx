@@ -13,12 +13,13 @@ import Soy from "../assets/soy.png"
 import FancyRadio from '../components/FancyRadio'
 import { useContext } from 'react'
 import { CartContext } from '../App'
-
+import { UrlContext } from '../App'
 const Menu = () => {
 
   const {cart, setCart} = useContext(CartContext)
 
-  const url = "http://10.201.2.13:88"
+  const turl = useContext(UrlContext)
+  const url = turl.url
 
   const [foods,setFoods] = useState([
     {

@@ -16,11 +16,13 @@ import RestaurantProfilePage from "./pages/RolePages/RestaurantProfilePage";
 import RecentOrders from "./pages/RecentOrders";
 
 export const CartContext = createContext([]);
-export const UserContext = createContext([])
+export const UserContext = createContext([]);
+export const UrlContext = createContext("");
 
 function App() {
   const [cart, setCart] = useState([]);
-  const [user, setUser] = useState({user_id: 1, first_name: "fname", last_name: "lname", email: "anyd@budos.xd", role: "user"})
+  const [user, setUser] = useState([])
+  const [url, setUrl] = useState("http://localhost:89")
 
   const router = createBrowserRouter([
     {
@@ -44,13 +46,15 @@ function App() {
   ]);
 
   return (
-    <UserContext.Provider value={{ user, setUser }}>
-      <CartContext.Provider value={{ cart, setCart }}>
-        <div className="bgImage w-screen h-screen">
-          <RouterProvider router={router} />
-        </div>
-      </CartContext.Provider>
-    </UserContext.Provider>
+    <UrlContext.Provider value={{url, setUrl}}>
+      <UserContext.Provider value={{ user, setUser }}>
+        <CartContext.Provider value={{ cart, setCart }}>
+          <div className="bgImage w-screen h-screen">
+            <RouterProvider router={router} />
+          </div>
+        </CartContext.Provider>
+      </UserContext.Provider>
+    </UrlContext.Provider>
   );
 }
 

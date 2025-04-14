@@ -24,7 +24,7 @@ const Order = ({ data }) => {
             <div className='border-l-2 border-[#93e2ae]'>
                 {
                     data.cart.map((x,i) => <div className='flex start-0 ml-2 text-xl'>
-                        {x.food_id} {x.count}
+                        {x.name} {x.count}x
                     </div>)
                 }
             </div>

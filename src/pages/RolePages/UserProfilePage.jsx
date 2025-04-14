@@ -23,6 +23,15 @@ const UserProfilePage = () => {
     getHistotry()
   }, [])
 
+  const [imgUrl, setImgUrl] = useState("")
+  const [newName, setNewName] = useState("")
+  const [newNamePsw, setNewNamePsw] = useState("")
+  const [newEmail, setNewEmail] = useState("")
+  const [newEmailPsw, setNewEmailPsw] = useState("")
+  const [newPsw, setNewPsw] = useState("")
+  const [newPsw2, setNewPsw2] = useState("")
+  const [newPswPsw, setNewPswPsw] = useState("")
+
   return (
     <div className=''>
 
@@ -30,25 +39,25 @@ const UserProfilePage = () => {
         <div className=' grid grid-cols-2 gap-2 gap-x-8 xs:bg-amber-400 smallScreenGrid'>
           <div className='flex flex-col gap-2 border-b-2 border-[#93e2ae] pb-2'>
             <img className='rounded-full w-[78px] mx-auto' src="https://placehold.co/100x100" alt="" />
-            <input className='p-2 border-2 border-gray-400 rounded-lg hover:border-[#355e3b] transition-all' type="text" name="" id="" placeholder='Image url' />
+            <input className='p-2 border-2 border-gray-400 rounded-lg hover:border-[#355e3b] transition-all' type="text" value={imgUrl} onChange={(e) => setImgUrl(e.target.value)} placeholder='Image url' />
             <input className='p-2 border-2 border-gray-400 rounded-lg hover:border-[#355e3b] hover:bg-[#C2F0D1] transition-all' type="button" value="Change image" />
           </div>
           <div className='flex flex-col gap-2 border-b-2 border-[#93e2ae] pb-2 '>
             {user.first_name + " " + user.last_name}
-            <input className='p-2 border-2 border-gray-400 rounded-lg hover:border-[#355e3b] transition-all' type="text" name="" id="" placeholder='Change name' />
-            <input className='p-2 border-2 border-gray-400 rounded-lg hover:border-[#355e3b] transition-all' type="password" name="" id="" placeholder='Password' />
+            <input className='p-2 border-2 border-gray-400 rounded-lg hover:border-[#355e3b] transition-all' type="text" value={newName} onChange={(e) => setNewName(e.target.value)} placeholder='Change name' />
+            <input className='p-2 border-2 border-gray-400 rounded-lg hover:border-[#355e3b] transition-all' type="password" value={newNamePsw} onChange={(e) => setNewNamePsw(e.target.value)} placeholder='Password' />
             <input className='p-2 border-2 border-gray-400 rounded-lg hover:border-[#355e3b] hover:bg-[#C2F0D1] transition-all' type="button" value="Change name" />
           </div>
           <div className='flex flex-col gap-2 smallScreenGridBorder'>
             Email: {user.email}
-            <input className='p-2 border-2 border-gray-400 rounded-lg hover:border-[#355e3b] transition-all' type="text" name="" id="" placeholder='Change email' />
-            <input className='p-2 border-2 border-gray-400 rounded-lg hover:border-[#355e3b] transition-all' type="password" name="" id="" placeholder='Password' />
+            <input className='p-2 border-2 border-gray-400 rounded-lg hover:border-[#355e3b] transition-all' type="text" value={newEmail} onChange={(e) => setNewEmail(e.target.value)} placeholder='Change email' />
+            <input className='p-2 border-2 border-gray-400 rounded-lg hover:border-[#355e3b] transition-all' type="password" value={newEmailPsw} onChange={(e) => setNewEmailPsw(e.target.value)} placeholder='Password' />
             <input className='p-2 border-2 border-gray-400 rounded-lg hover:border-[#355e3b] hover:bg-[#C2F0D1] transition-all' type="button" value="Change email" />
           </div>
           <div className='flex flex-col gap-2'>
-            <input className='p-2 border-2 border-gray-400 rounded-lg hover:border-[#355e3b] transition-all' type="password" name="" id="" placeholder='New password' />
-            <input className='p-2 border-2 border-gray-400 rounded-lg hover:border-[#355e3b] transition-all' type="password" name="" id="" placeholder='New password again' />
-            <input className='p-2 border-2 border-gray-400 rounded-lg hover:border-[#355e3b] transition-all' type="password" name="" id="" placeholder='Old password' />
+            <input className='p-2 border-2 border-gray-400 rounded-lg hover:border-[#355e3b] transition-all' type="password" value={newPsw} onChange={(e) => setNewPsw(e.target.value)} placeholder='New password' />
+            <input className='p-2 border-2 border-gray-400 rounded-lg hover:border-[#355e3b] transition-all' type="password" value={newPsw2} onChange={(e) => setNewPsw2(e.target.value)} placeholder='New password again' />
+            <input className='p-2 border-2 border-gray-400 rounded-lg hover:border-[#355e3b] transition-all' type="password" value={newPswPsw} onChange={(e) => setNewPswPsw(e.target.value)} placeholder='Old password' />
             <input className='p-2 border-2 border-gray-400 rounded-lg hover:border-[#355e3b] hover:bg-[#C2F0D1] transition-all' type="button" value="Change password" />
           </div>
         </div>

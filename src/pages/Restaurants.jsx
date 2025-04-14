@@ -1,10 +1,11 @@
 import React from 'react'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useContext } from 'react'
 import Restaurant from "../components/Restaurant"
-
+import { UrlContext } from '../App'
 const Restaurants = () => {
   
-  const url = "http://10.201.2.13:88"
+  const turl = useContext(UrlContext)
+    const url = turl.url
 
   const [restaurants, setRestaurants] = useState([{
     restaurant_adress: "anyád hihi",

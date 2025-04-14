@@ -5,10 +5,12 @@ import Arrow from "../assets/arrow.svg"
 import TrashCan from "../assets/trash.svg"
 import { UserContext } from '../App'
 import { useNavigate } from 'react-router-dom'
+import { UrlContext } from '../App'
 const Checkout = () => {
     const {cart, setCart} = useContext(CartContext)
     const {user, setUser} = useContext(UserContext)
-    const url = "http://10.201.2.13:88"
+    const turl = useContext(UrlContext)
+      const url = turl.url
     const navigate = useNavigate()
 
     function changeSize(index,change){

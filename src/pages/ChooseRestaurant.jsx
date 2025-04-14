@@ -4,10 +4,12 @@ import Restaurant from '../components/Restaurant'
 import { CartContext } from '../App'
 import { UserContext } from '../App'
 import { useContext } from 'react'
+import { UrlContext } from '../App'
 
 const ChooseRestaurant = () => {
   
-    const url = "http://10.201.2.13:88"
+    const turl = useContext(UrlContext)
+      const url = turl.url
 
     const {cart, setCart} = useContext(CartContext)
     const {user, setUser} = useContext(UserContext)
@@ -41,7 +43,7 @@ const ChooseRestaurant = () => {
             restaurant_id: restaurant_id,
             cart: temp
         })
-        const resp = await fetch(url+"/addtocart",{
+        const resp = await fetch(url+"/order",{
             method: "POST",
             headers: {"Content-Type" : "application/json"},
             body: JSON.stringify({

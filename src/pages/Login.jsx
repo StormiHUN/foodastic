@@ -3,10 +3,11 @@ import { useState } from 'react'
 import { UserContext } from '../App'
 import { useContext } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-
+import { UrlContext } from '../App'
 const Login = () => {
 
-  const url = "http://10.201.2.13:88"
+  const turl = useContext(UrlContext)
+    const url = turl.url
 
   const navigate = useNavigate()
   const {user, setUser} = useContext(UserContext)

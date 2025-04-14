@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 import { useState } from 'react'
 import { useEffect } from 'react'
 import Order from '../components/Order'
-
+import { UrlContext } from '../App'
 const RecentOrders = () => {
     
     const {user, setUser} = useContext(UserContext)
@@ -104,7 +104,8 @@ const RecentOrders = () => {
         }
 ])
 
-    const url = "http://10.201.2.13:88"
+    const turl = useContext(UrlContext)
+      const url = turl.url
 
     useEffect(() => {
         async function getOrders() {

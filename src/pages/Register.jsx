@@ -2,10 +2,11 @@ import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { UserContext } from '../App'
 import { useContext } from 'react'
-
+import { UrlContext } from '../App'
 const Register = () => {
 
-  const url = "http://10.201.2.13:88"
+  const turl = useContext(UrlContext)
+    const url = turl.url
   const {user, setUser} = useContext(UserContext)
   const navigate = useNavigate()
 
