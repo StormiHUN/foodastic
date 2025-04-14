@@ -1,5 +1,5 @@
 # Foodastic
-(Work in progress)
+(Work in progress...)
 
 ## Overview
 Foodastic is a food ordering application aimed at providing a unique dining experience that isn't necessarily centered around fast food. It includes features tailored for both regular users and administrative staff.
