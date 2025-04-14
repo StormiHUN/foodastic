@@ -1,5 +1,5 @@
 import React from 'react'
-import { UserContext } from '../../App'
+import { UrlContext, UserContext } from '../../App'
 import { useContext, useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { useState } from 'react'
@@ -7,6 +7,8 @@ import HistoryCard from '../../components/HistoryCard'
 
 const UserProfilePage = () => {
 
+  const turl = useContext(UrlContext)
+  const url = turl.url
   const { user, setUser } = useContext(UserContext)
   const navigate = useNavigate()
   const [history, setHistory] = useState(["sajt", "sajt", "sajt", "sajt", "sajt", "sajt", "sajt", "sajt", "sajt", "sajt", "sajt", "sajt", "sajt", "sajt", "sajt"])
@@ -32,6 +34,53 @@ const UserProfilePage = () => {
   const [newPsw2, setNewPsw2] = useState("")
   const [newPswPsw, setNewPswPsw] = useState("")
 
+  async function changeImage() {
+    const resp = await fetch(url+"/user/image/"+user.user_id,{
+      method: "PATCH",
+      headers: {"Content-Type" : "application/json"},
+      body: JSON.stringify({image: imgUrl})
+    })
+    const json = await resp.json()
+    setUser(json)
+  }
+
+  async function changeName() {
+    const resp = await fetch(url+"/user/name/"+user.user_id,{
+      method: "PATCH",
+      headers: {"Content-Type" : "application/json"},
+      body: JSON.stringify({
+        first_name: changeName.split(" ")[0],
+        last_name: changeName.split(" ")[1] 
+      })
+    })
+    const json = await resp.json()
+    setUser(json)
+  }
+
+  async function changeEmail() {
+    const resp = await fetch(url+"/user/email/"+user.user_id,{
+      method: "PATCH",
+      headers: {"Content-Type" : "application/json"},
+      body: JSON.stringify({
+        email: newEmail
+      })
+    })
+    const json = resp.json()
+    setUser(json)
+  }
+
+  async function changePassword() {
+    const resp = await fetch(url+"/user/password/"+user.user_id,{
+      method: "PATCH",
+      headers: {"Content-Type" : "application/json"},
+      body: JSON.stringify({
+        password: newPsw
+      })
+    })
+    const json = await resp.json()
+    setUser(json)
+  }
+
   return (
     <div className=''>
 
@@ -40,25 +89,25 @@ const UserProfilePage = () => {
           <div className='flex flex-col gap-2 border-b-2 border-[#93e2ae] pb-2'>
             <img className='rounded-full w-[78px] mx-auto' src="https://placehold.co/100x100" alt="" />
             <input className='p-2 border-2 border-gray-400 rounded-lg hover:border-[#355e3b] transition-all' type="text" value={imgUrl} onChange={(e) => setImgUrl(e.target.value)} placeholder='Image url' />
-            <input className='p-2 border-2 border-gray-400 rounded-lg hover:border-[#355e3b] hover:bg-[#C2F0D1] transition-all' type="button" value="Change image" />
+            <input onClick={() => changeImage()} className='p-2 border-2 border-gray-400 rounded-lg hover:border-[#355e3b] hover:bg-[#C2F0D1] transition-all' type="button" value="Change image" />
           </div>
           <div className='flex flex-col gap-2 border-b-2 border-[#93e2ae] pb-2 '>
             {user.first_name + " " + user.last_name}
             <input className='p-2 border-2 border-gray-400 rounded-lg hover:border-[#355e3b] transition-all' type="text" value={newName} onChange={(e) => setNewName(e.target.value)} placeholder='Change name' />
             <input className='p-2 border-2 border-gray-400 rounded-lg hover:border-[#355e3b] transition-all' type="password" value={newNamePsw} onChange={(e) => setNewNamePsw(e.target.value)} placeholder='Password' />
-            <input className='p-2 border-2 border-gray-400 rounded-lg hover:border-[#355e3b] hover:bg-[#C2F0D1] transition-all' type="button" value="Change name" />
+            <input onClick={() => changeName()} className='p-2 border-2 border-gray-400 rounded-lg hover:border-[#355e3b] hover:bg-[#C2F0D1] transition-all' type="button" value="Change name" />
           </div>
           <div className='flex flex-col gap-2 smallScreenGridBorder'>
             Email: {user.email}
             <input className='p-2 border-2 border-gray-400 rounded-lg hover:border-[#355e3b] transition-all' type="text" value={newEmail} onChange={(e) => setNewEmail(e.target.value)} placeholder='Change email' />
             <input className='p-2 border-2 border-gray-400 rounded-lg hover:border-[#355e3b] transition-all' type="password" value={newEmailPsw} onChange={(e) => setNewEmailPsw(e.target.value)} placeholder='Password' />
-            <input className='p-2 border-2 border-gray-400 rounded-lg hover:border-[#355e3b] hover:bg-[#C2F0D1] transition-all' type="button" value="Change email" />
+            <input onClick={() => changeEmail()} className='p-2 border-2 border-gray-400 rounded-lg hover:border-[#355e3b] hover:bg-[#C2F0D1] transition-all' type="button" value="Change email" />
           </div>
           <div className='flex flex-col gap-2'>
             <input className='p-2 border-2 border-gray-400 rounded-lg hover:border-[#355e3b] transition-all' type="password" value={newPsw} onChange={(e) => setNewPsw(e.target.value)} placeholder='New password' />
             <input className='p-2 border-2 border-gray-400 rounded-lg hover:border-[#355e3b] transition-all' type="password" value={newPsw2} onChange={(e) => setNewPsw2(e.target.value)} placeholder='New password again' />
             <input className='p-2 border-2 border-gray-400 rounded-lg hover:border-[#355e3b] transition-all' type="password" value={newPswPsw} onChange={(e) => setNewPswPsw(e.target.value)} placeholder='Old password' />
-            <input className='p-2 border-2 border-gray-400 rounded-lg hover:border-[#355e3b] hover:bg-[#C2F0D1] transition-all' type="button" value="Change password" />
+            <input onClick={() => changePassword()} className='p-2 border-2 border-gray-400 rounded-lg hover:border-[#355e3b] hover:bg-[#C2F0D1] transition-all' type="button" value="Change password" />
           </div>
         </div>
         <div className='flex flex-col gap-2'>
