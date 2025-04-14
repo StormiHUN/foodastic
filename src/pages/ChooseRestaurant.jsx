@@ -27,6 +27,7 @@ const ChooseRestaurant = () => {
     },[])
     
     async function placeOrder(restaurant_id) {
+        console.log(cart)
         let temp = []
         for(let i of cart){
             temp.push({

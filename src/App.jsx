@@ -34,7 +34,7 @@ function App() {
         { path: '/login', element: <Login /> },
         { path: '/register', element: <Register /> },
         { path: '/user', element: <ProfilePage /> },
-        { path: '/chooserestauran', element: <ChooseRestaurant /> },
+        { path: '/chooserestaurant', element: <ChooseRestaurant /> },
         { path: '/user/user', element: <UserProfilePage /> },
         { path: '/user/admin', element: <AdminProfilePage /> },
         { path: '/user/restaurant', element: <RestaurantProfilePage /> },

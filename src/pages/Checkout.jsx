@@ -26,7 +26,7 @@ const Checkout = () => {
         if(user == undefined){
             alert("You need to be logged in to use this feature!")
         }else{
-            navigate("/chooserestauran")
+            navigate("/chooserestaurant")
         }
     }
 
