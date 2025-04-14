@@ -13,6 +13,7 @@ import ChooseRestaurant from "./pages/ChooseRestaurant";
 import UserProfilePage from "./pages/RolePages/UserProfilePage";
 import AdminProfilePage from "./pages/RolePages/AdminProfilePage";
 import RestaurantProfilePage from "./pages/RolePages/RestaurantProfilePage";
+import RecentOrders from "./pages/RecentOrders";
 
 export const CartContext = createContext([]);
 export const UserContext = createContext([])
@@ -37,6 +38,7 @@ function App() {
         { path: '/user/user', element: <UserProfilePage /> },
         { path: '/user/admin', element: <AdminProfilePage /> },
         { path: '/user/restaurant', element: <RestaurantProfilePage /> },
+        { path: '/recentOrders', element: <RecentOrders /> },
       ],
     },
   ]);
