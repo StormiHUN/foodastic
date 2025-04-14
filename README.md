@@ -1,4 +1,5 @@
 # Foodastic
+(Work in progress)
 
 ## Overview
 Foodastic is a food ordering application aimed at providing a unique dining experience that isn't necessarily centered around fast food. It includes features tailored for both regular users and administrative staff.
@@ -40,7 +41,11 @@ Foodastic is a food ordering application aimed at providing a unique dining expe
 ---
 
 ## Technical Details
-To be filled with implementation, framework, database, and API details.
+- Can be customised for customers.
+- Easy to understand user interface.
+- Powerful, full-fledged toolset.
+- Technologies used: ReactJS, React DOM, React Router DOM, TailwindCSS, Vite
+- Backend for this project is available [Here](https://github.com/YnwCh3f/foodastic_backend)!
 
 ---
 
