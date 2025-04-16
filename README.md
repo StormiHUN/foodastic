@@ -1,12 +1,58 @@
-# React + Vite
+# Foodastic
+(Work in progress...)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Overview
+Foodastic is a food ordering application aimed at providing a unique dining experience that isn't necessarily centered around fast food. It includes features tailored for both regular users and administrative staff.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Pages and Features
 
-## Expanding the ESLint configuration
+### Home Page
+- **Description:** Landing page showcasing the app's overall concept.
 
-If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### Menu Page
+- **Purpose:** Allows users to browse food items and place orders.
+- **Key Features:**  
+  - Food item listing.  
+  - Ordering functionality.  
+
+### Restaurant Page
+- **Purpose:** Users can explore restaurants.  
+
+### User Page
+- **Description:** Dedicated user profile management.  
+- **Features:**  
+  - Users can update their profile picture, name, email, and password.  
+  - Users can view their order history.  
+
+### Admin Page
+- **Description:** Administrative control hub.  
+- **Features:**  
+  - Modify food items: Add, edit, and delete food offerings.  
+  - Restaurant management: Add or remove restaurant details.  
+
+### Restaurant Staff Page
+- **Purpose:** Facilitates order management for restaurant staff.  
+- **Key Features:**  
+  - View incoming orders.  
+  - Update order status to “complete.”
+
+---
+
+## Technical Details
+- Can be customised for customers.
+- Easy to understand user interface.
+- Powerful, full-fledged toolset.
+- Technologies used: ReactJS, React DOM, React Router DOM, TailwindCSS, Vite
+- Backend for this project is available [Here](https://github.com/YnwCh3f/foodastic_backend)!
+
+---
+
+## Future Enhancements
+Ideas for improvement or new features:
+- Technical support for those who need.  
+- Enhanced order tracking with live updates.  
+- Loyalty program for frequent users.
+
+---
