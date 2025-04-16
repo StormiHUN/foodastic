@@ -14,6 +14,8 @@ import UserProfilePage from "./pages/RolePages/UserProfilePage";
 import AdminProfilePage from "./pages/RolePages/AdminProfilePage";
 import RestaurantProfilePage from "./pages/RolePages/RestaurantProfilePage";
 import RecentOrders from "./pages/RecentOrders";
+import ControlFoods from "./pages/ControlFoods";
+import ControlRestaurants from "./pages/ControlRestaurants";
 
 export const CartContext = createContext([]);
 export const UserContext = createContext([]);
@@ -41,6 +43,9 @@ function App() {
         { path: '/user/admin', element: <AdminProfilePage /> },
         { path: '/user/restaurant', element: <RestaurantProfilePage /> },
         { path: '/recentOrders', element: <RecentOrders /> },
+        {path: '/controlFoods', element: <ControlFoods />},
+        {path: '/controlRestaurants', element: <ControlRestaurants />}
+        
       ],
     },
   ]);

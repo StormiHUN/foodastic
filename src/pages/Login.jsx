@@ -22,7 +22,6 @@ const Login = () => {
         body: JSON.stringify({email: email, password: psw})
       })
       const json = await resp.json()
-      console.log(json)
       if(!json.error){
         setUser(json)
       }else if(resp.status == 404){

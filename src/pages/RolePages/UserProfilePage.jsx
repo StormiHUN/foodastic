@@ -3,7 +3,6 @@ import { UrlContext, UserContext } from '../../App'
 import { useContext, useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { useState } from 'react'
-import HistoryCard from '../../components/HistoryCard'
 
 const UserProfilePage = () => {
 
@@ -11,7 +10,6 @@ const UserProfilePage = () => {
   const url = turl.url
   const { user, setUser } = useContext(UserContext)
   const navigate = useNavigate()
-  const [history, setHistory] = useState(["sajt", "sajt", "sajt", "sajt", "sajt", "sajt", "sajt", "sajt", "sajt", "sajt", "sajt", "sajt", "sajt", "sajt", "sajt"])
   const [imgUrl, setImgUrl] = useState("")
   const [newName, setNewName] = useState("")
   const [newNamePsw, setNewNamePsw] = useState("")
@@ -29,12 +27,6 @@ const UserProfilePage = () => {
     if (user.role == "user") navigate("/user/user")
     else if (user.role == "admin") navigate("/user/admin")
     else if (user.role == "restaurant") navigate("/user/restaurnat")
-    async function getHistotry() {
-      //const resp = await fetch("http://10.201.2.13/orderhistory/"+user.user_id)
-      //const json = await resp.json()
-      //setHistory(json)
-    }
-    getHistotry()
     setUserPic(user.profile_picture ? user.profile_picture : "https://placehold.co/100x100")
     setUserEmail(user.email)
     setUserFname(user.first_name)
@@ -50,7 +42,7 @@ const UserProfilePage = () => {
       body: JSON.stringify({image: imgUrl})
     })
     const json = await resp.json()
-    user.profile_picture = json[0].profile_picture
+    user.profile_picture = (json.status == "OK" ? imgUrl : "")
     setUserPic(imgUrl)
   }
 
@@ -65,6 +57,10 @@ const UserProfilePage = () => {
       })
     })
     const json = await resp.json()
+    if(json.error){
+      alert("Invalid password!")
+      return
+    }
     user.first_name = newName.split(" ")[0]
     user.last_name = newName.split(" ")[1]
     setUserFname(newName.split(" ")[0])
@@ -81,6 +77,10 @@ const UserProfilePage = () => {
       })
     })
     const json = resp.json()
+    if(json.error){
+      alert("Invalid password!")
+      return
+    }
     user.email = newEmail
     setUserEmail(newEmail)
   }
@@ -95,7 +95,11 @@ const UserProfilePage = () => {
       })
     })
     const json = await resp.json()
-    setUser(json)
+    if(json.error){
+      alert("Invalid password!")
+      return
+    }
+    alert("Password changed succesfully!")
   }
 
 
