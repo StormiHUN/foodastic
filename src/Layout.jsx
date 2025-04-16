@@ -25,7 +25,7 @@ const Layout = () => {
                     <NavElement label="Restaurants" to="/restaurants" selected={selected} setSelected={setSelected} />
                 </div>
                 <div>
-                    {user == undefined ? 
+                    {(user == undefined || user == []) ? 
                     <Link className='p-4 flex align-middle hover:underline hover:bg-[#C2F0D1] transition-all' onClick={() => setSelected("Login")} to="/login">
                         Login
                     </Link>

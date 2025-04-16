@@ -14,6 +14,10 @@ const ProfilePage = () => {
     if (user.role == "user") navigate("/user/user") 
     else if (user.role == "admin") navigate("/user/admin")
     else if (user.role == "restaurant") navigate("/user/restaurnat")
+    else{
+      setUser(undefined)
+      navigate("/login")
+    }
   }, [])
 
   return (

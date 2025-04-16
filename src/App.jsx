@@ -21,7 +21,7 @@ export const UrlContext = createContext("");
 
 function App() {
   const [cart, setCart] = useState([]);
-  const [user, setUser] = useState([])
+  const [user, setUser] = useState(undefined)
   const [url, setUrl] = useState("http://localhost:89")
 
   const router = createBrowserRouter([
