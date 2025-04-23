@@ -26,20 +26,20 @@ const AdminProfilePage = () => {
     if (user.role == "user") navigate("/user/user")
     else if (user.role == "admin") navigate("/user/admin")
     else if (user.role == "restaurant") navigate("/user/restaurnat")
-    
+
     setUserPic(user.profile_picture ? user.profile_picture : "https://placehold.co/100x100")
     setUserEmail(user.email)
     setUserFname(user.first_name)
     setUserLname(user.last_name)
   }, [])
 
-  
+
 
   async function changeImage() {
-    const resp = await fetch(url+"/user/image/"+user.user_id,{
+    const resp = await fetch(url + "/user/image/" + user.user_id, {
       method: "PATCH",
-      headers: {"Content-Type" : "application/json"},
-      body: JSON.stringify({image: imgUrl})
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ image: imgUrl })
     })
     const json = await resp.json()
     user.profile_picture = (json.status == "OK" ? imgUrl : "")
@@ -47,9 +47,9 @@ const AdminProfilePage = () => {
   }
 
   async function changeName() {
-    const resp = await fetch(url+"/user/name/"+user.user_id,{
+    const resp = await fetch(url + "/user/name/" + user.user_id, {
       method: "PATCH",
-      headers: {"Content-Type" : "application/json"},
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         first_name: newName.split(" ")[0],
         last_name: newName.split(" ")[1],
@@ -57,7 +57,7 @@ const AdminProfilePage = () => {
       })
     })
     const json = await resp.json()
-    if(json.error){
+    if (json.error) {
       alert("Invalid password!")
       return
     }
@@ -68,16 +68,16 @@ const AdminProfilePage = () => {
   }
 
   async function changeEmail() {
-    const resp = await fetch(url+"/user/email/"+user.user_id,{
+    const resp = await fetch(url + "/user/email/" + user.user_id, {
       method: "PATCH",
-      headers: {"Content-Type" : "application/json"},
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         email: newEmail,
         password: newEmailPsw
       })
     })
     const json = resp.json()
-    if(json.error){
+    if (json.error) {
       alert("Invalid password!")
       return
     }
@@ -86,16 +86,16 @@ const AdminProfilePage = () => {
   }
 
   async function changePassword() {
-    const resp = await fetch(url+"/user/password/"+user.user_id,{
+    const resp = await fetch(url + "/user/password/" + user.user_id, {
       method: "PATCH",
-      headers: {"Content-Type" : "application/json"},
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         password: newPsw,
         passwordOld: newPswPsw
       })
     })
     const json = await resp.json()
-    if(json.error){
+    if (json.error) {
       alert("Invalid password!")
       return
     }
@@ -133,11 +133,12 @@ const AdminProfilePage = () => {
           </div>
         </div>
         <div className='flex flex-col gap-2'>
-        <Link className='mt-4 border-2 rounded-lg border-[#93e2ae] bg-white px-4 py-2 hover:border-[#355e3b] hover:bg-[#C2F0D1] hover:cursor-pointer transition-all' to="/controlFoods" value="Control foods">Control foods</Link>
-        <Link className='mt-4 border-2 rounded-lg border-[#93e2ae] bg-white px-4 py-2 hover:border-[#355e3b] hover:bg-[#C2F0D1] hover:cursor-pointer transition-all' to="/controlRestaurants" value="Control restaurants">Control restaurants</Link>
+          <Link className='mt-4 border-2 rounded-lg border-[#93e2ae] bg-white px-4 py-2 hover:border-[#355e3b] hover:bg-[#C2F0D1] hover:cursor-pointer transition-all' to="/controlFoods" value="Control foods">Control foods</Link>
+          <Link className='mt-4 border-2 rounded-lg border-[#93e2ae] bg-white px-4 py-2 hover:border-[#355e3b] hover:bg-[#C2F0D1] hover:cursor-pointer transition-all' to="/controlUsers" value="Control foods">Control users</Link>
+          <Link className='mt-4 border-2 rounded-lg border-[#93e2ae] bg-white px-4 py-2 hover:border-[#355e3b] hover:bg-[#C2F0D1] hover:cursor-pointer transition-all' to="/controlRestaurants" value="Control restaurants">Control restaurants</Link>
           <button onClick={() => { navigate("/"); setUser(undefined) }} className='mt-4 border-2 rounded-lg border-[#93e2ae] bg-white px-4 py-2 hover:border-[#355e3b] hover:bg-[#C2F0D1] hover:cursor-pointer transition-all'>Logout</button>
         </div>
-        
+
       </div>
 
     </div>

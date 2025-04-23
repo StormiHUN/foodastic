@@ -16,6 +16,7 @@ import RestaurantProfilePage from "./pages/RolePages/RestaurantProfilePage";
 import RecentOrders from "./pages/RecentOrders";
 import ControlFoods from "./pages/ControlFoods";
 import EditFood from "./pages/EditFood"
+import ControlUsers from "./pages/ControlUsers";
 import ControlRestaurants from "./pages/ControlRestaurants";
 import NewFood from "./pages/NewFood";
 
@@ -49,6 +50,7 @@ function App() {
         { path: '/controlFoods', element: <ControlFoods />, children: [
           { path: ':id/edit', element: <EditFood />},
         ]},
+        { path: '/controlUsers', element: <ControlUsers />},
         { path: '/controlRestaurants', element: <ControlRestaurants />},
         { path: '/newFood', element: <NewFood />},
         
