@@ -15,7 +15,10 @@ import AdminProfilePage from "./pages/RolePages/AdminProfilePage";
 import RestaurantProfilePage from "./pages/RolePages/RestaurantProfilePage";
 import RecentOrders from "./pages/RecentOrders";
 import ControlFoods from "./pages/ControlFoods";
+import EditFood from "./pages/EditFood"
 import ControlRestaurants from "./pages/ControlRestaurants";
+import NewFood from "./pages/NewFood";
+
 
 export const CartContext = createContext([]);
 export const UserContext = createContext([]);
@@ -43,8 +46,11 @@ function App() {
         { path: '/user/admin', element: <AdminProfilePage /> },
         { path: '/user/restaurant', element: <RestaurantProfilePage /> },
         { path: '/recentOrders', element: <RecentOrders /> },
-        {path: '/controlFoods', element: <ControlFoods />},
-        {path: '/controlRestaurants', element: <ControlRestaurants />}
+        { path: '/controlFoods', element: <ControlFoods />, children: [
+          { path: ':id/edit', element: <EditFood />},
+        ]},
+        { path: '/controlRestaurants', element: <ControlRestaurants />},
+        { path: '/newFood', element: <NewFood />},
         
       ],
     },
