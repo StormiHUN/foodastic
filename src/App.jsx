@@ -5,7 +5,6 @@ import Layout from "./Layout";
 import Restaurants from "./pages/Restaurants";
 import Checkout from "./pages/Checkout";
 import { useState, createContext } from "react";
-import { useContext } from "react";
 import Login from "./pages/Login";
 import Register from "./pages/Register"
 import ProfilePage from "./pages/ProfilePage";
@@ -19,7 +18,9 @@ import EditFood from "./pages/EditFood"
 import ControlUsers from "./pages/ControlUsers";
 import ControlRestaurants from "./pages/ControlRestaurants";
 import NewFood from "./pages/NewFood";
-
+import ControlRestaurant from "./components/ControlRestaurant";
+import EditRestaurant from "./pages/EditRestaurant"
+import NewRestaurant from "./pages/NewRestaurant";
 
 export const CartContext = createContext([]);
 export const UserContext = createContext([]);
@@ -51,9 +52,11 @@ function App() {
           { path: ':id/edit', element: <EditFood />},
         ]},
         { path: '/controlUsers', element: <ControlUsers />},
-        { path: '/controlRestaurants', element: <ControlRestaurants />},
+        { path: '/controlRestaurants', element: <ControlRestaurants />, children: [
+          {path: ':id/edit', element: <EditRestaurant />}
+        ]},
         { path: '/newFood', element: <NewFood />},
-        
+        {path: '/newRestaurant', element: <NewRestaurant />}
       ],
     },
   ]);
