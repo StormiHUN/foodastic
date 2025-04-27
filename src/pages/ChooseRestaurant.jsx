@@ -5,9 +5,11 @@ import { CartContext } from '../App'
 import { UserContext } from '../App'
 import { useContext } from 'react'
 import { UrlContext } from '../App'
+import { useNavigate } from 'react-router-dom'
 
 const ChooseRestaurant = () => {
   
+    const navigate = useNavigate()
     const turl = useContext(UrlContext)
       const url = turl.url
 
@@ -29,7 +31,6 @@ const ChooseRestaurant = () => {
     },[])
     
     async function placeOrder(restaurant_id) {
-        console.log(cart)
         let temp = []
         for(let i of cart){
             temp.push({
@@ -37,12 +38,6 @@ const ChooseRestaurant = () => {
                 size: i.size
             })
         }
-        console.log(user)
-        console.log({
-            user_id: user.user_id,
-            restaurant_id: restaurant_id,
-            cart: temp
-        })
         const resp = await fetch(url+"/order",{
             method: "POST",
             headers: {"Content-Type" : "application/json"},
@@ -53,6 +48,9 @@ const ChooseRestaurant = () => {
             })
         })
         const json = await resp.json()
+        if(json.order_id){
+          navigate("/finalOrder/"+json.order_id)
+        }
     }
 
     return (

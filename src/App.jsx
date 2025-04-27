@@ -21,6 +21,7 @@ import NewFood from "./pages/NewFood";
 import ControlRestaurant from "./components/ControlRestaurant";
 import EditRestaurant from "./pages/EditRestaurant"
 import NewRestaurant from "./pages/NewRestaurant";
+import FinalOrder from "./pages/FinalOrder";
 
 export const CartContext = createContext([]);
 export const UserContext = createContext([]);
@@ -56,7 +57,8 @@ function App() {
           {path: ':id/edit', element: <EditRestaurant />}
         ]},
         { path: '/newFood', element: <NewFood />},
-        {path: '/newRestaurant', element: <NewRestaurant />}
+        {path: '/newRestaurant', element: <NewRestaurant />},
+        {path: '/finalOrder/:id', element: <FinalOrder />}
       ],
     },
   ]);

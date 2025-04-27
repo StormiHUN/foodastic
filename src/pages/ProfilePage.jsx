@@ -13,7 +13,7 @@ const ProfilePage = () => {
   useEffect(() => {
     if (user.role == "user") navigate("/user/user") 
     else if (user.role == "admin") navigate("/user/admin")
-    else if (user.role == "restaurant") navigate("/user/restaurnat")
+    else if (user.role == "restaurant") navigate("/user/restaurant")
     else{
       setUser(undefined)
       navigate("/login")

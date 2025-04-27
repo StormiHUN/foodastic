@@ -39,7 +39,7 @@ const Checkout = () => {
             <hr className='mb-4' />
             {cart.length > 0 ? 
             <div>
-            {cart.map((x,i) => <div className='flex justify-between align-middle mb-4' key={i}><p className='text-2xl mr-40'>{x.data.name}</p>  <div className='flex'><div className='flex border rounded-full'><button onClick={() => changeSize(i,-1)} className='border-r rounded-full'><img className='rotate-180' src={Arrow} /></button><p className='text-2xl mt-1 min-w-8'>{x.size}</p><button onClick={() => changeSize(i,1)} className='border-l rounded-full'><img src={Arrow} /></button></div> <button onClick={() => deleteFromCart(i)} className='p-2'><img src={TrashCan} /></button></div></div>)}
+            {cart.map((x,i) => <div className='flex justify-between align-middle mb-4 checkoutItem' key={i}><p className='text-2xl mr-40'>{x.data.name}</p>  <div className='flex'><div className='flex border rounded-full'><button onClick={() => changeSize(i,-1)} className='border-r rounded-full'><img className='rotate-180' src={Arrow} /></button><p className='text-2xl mt-1 min-w-8'>{x.size}</p><button onClick={() => changeSize(i,1)} className='border-l rounded-full'><img src={Arrow} /></button></div> <button onClick={() => deleteFromCart(i)} className='p-2'><img src={TrashCan} /></button></div></div>)}
 
             <button onClick={() => chooseRestaurant()} className='text-2xl'>Choose restaurant</button>
             </div>

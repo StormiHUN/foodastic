@@ -9,7 +9,7 @@ import { UrlContext } from '../App'
 const RecentOrders = () => {
     
     const {user, setUser} = useContext(UserContext)
-
+    console.log(user)
     const [orders, setOrders] = useState([])
 
     const turl = useContext(UrlContext)

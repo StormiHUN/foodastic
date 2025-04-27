@@ -26,7 +26,7 @@ const UserProfilePage = () => {
   useEffect(() => {
     if (user.role == "user") navigate("/user/user")
     else if (user.role == "admin") navigate("/user/admin")
-    else if (user.role == "restaurant") navigate("/user/restaurnat")
+    else if (user.role == "restaurant") navigate("/user/restaurant")
     setUserPic(user.profile_picture ? user.profile_picture : "https://placehold.co/100x100")
     setUserEmail(user.email)
     setUserFname(user.first_name)
