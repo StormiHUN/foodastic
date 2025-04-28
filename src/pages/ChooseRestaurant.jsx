@@ -48,6 +48,7 @@ const ChooseRestaurant = () => {
             })
         })
         const json = await resp.json()
+        console.log(json)
         if(json.order_id){
           navigate("/finalOrder/"+json.order_id)
         }

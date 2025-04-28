@@ -71,7 +71,8 @@
     }
     .checkoutItem{
         flex-direction: column;
-        justify-content: baseline;
+        width: fit-content;
+        margin-left: 25%;
     }
   }
 

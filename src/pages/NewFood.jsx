@@ -4,6 +4,14 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useContext } from "react";
 import { UrlContext } from "../App";
 import Arrow from "../assets/Arrow.svg"
+import Egg from "../assets/egg.png"
+import Fish from "../assets/fish.png"
+import Gluten from "../assets/gluten.png"
+import Lactose from "../assets/lactose.png"
+import Mollusk from "../assets/mollusk.png"
+import Nuts from "../assets/nuts.png"
+import Soy from "../assets/soy.png"
+import FancyRadio from '../components/FancyRadio'
 function NewFood() {
 
   const navigate = useNavigate()
@@ -12,6 +20,13 @@ function NewFood() {
   const [name, setName] = useState("")
   const [price, setPrice] = useState("")
   const [img, setImg] = useState("")
+  const [gluten, setGluten] = useState(true)
+  const [lactose, setLactose] = useState(true)
+  const [nuts, setNuts] = useState(true)
+  const [mollusk, setMollusk] = useState(true)
+  const [fish, setFish] = useState(true)
+  const [egg, setEgg] = useState(true)
+  const [soy, setSoy] = useState(true)
 
   async function newFood() {
     const resp = await fetch(url + "/food", {
@@ -20,7 +35,16 @@ function NewFood() {
       body: JSON.stringify({
         name: name,
         price: price,
-        image: img
+        image: img,
+        allergens: JSON.stringify(
+          {gluten: !gluten,
+          lactose: !lactose,
+          nuts: !nuts,
+          mollusk: !mollusk,
+          fish: !fish,
+          egg: !egg,
+          soy: !soy}
+        )
       })
     })
     const json = await resp.json()
@@ -51,6 +75,16 @@ function NewFood() {
           <div>
             <label htmlFor="foodName">Image: </label>
             <input className="p-2 border-2 rounded-lg border-[#93e2ae] hover:border-[#355e3b] transition-all" type="text" id="foodName" value={img} onChange={(e) => setImg(e.target.value)} />
+          </div>
+          Allergens:
+          <div className='smallScreenIcons'>
+            <FancyRadio control={gluten} setControl={setGluten} image={Gluten} />
+            <FancyRadio control={lactose} setControl={setLactose} image={Lactose} />
+            <FancyRadio control={nuts} setControl={setNuts} image={Nuts} />
+            <FancyRadio control={mollusk} setControl={setMollusk} image={Mollusk} />
+            <FancyRadio control={fish} setControl={setFish} image={Fish} />
+            <FancyRadio control={egg} setControl={setEgg} image={Egg} />
+            <FancyRadio control={soy} setControl={setSoy} image={Soy} />
           </div>
           <button onClick={() => newFood()} className="p-2 border-2 rounded-lg border-[#93e2ae] hover:border-[#355e3b] hover:bg-[#93e2ae] hover:cursor-pointer transition-all">New food</button>
         </div>
