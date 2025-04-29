@@ -31,15 +31,6 @@ function EditRestaurant() {
     }
   }
 
-  async function deleteRestaurant() {
-    const resp = await fetch(url + "/restaurant/" + restaurant.restaurant_id,{
-      method: "DELETE",
-      headers: {"Content-Type" : "application/json"}
-    })
-    const json = await resp.json()
-    if(json.status == "OK") alert("restaurant deleted")
-    else if(json.error) alert("Error: " + json.error)
-  }
 
   useEffect(() => {
     async function getRestaurant() {
@@ -68,7 +59,7 @@ function EditRestaurant() {
           <input className="p-2 border-2 rounded-lg border-[#93e2ae] hover:border-[#355e3b] transition-all" type="text" id="restaurantImage" value={img} onChange={(e) => setImg(e.target.value)} />
         </div>
         <button onClick={() => editRestaurant()} className="p-2 border-2 rounded-lg border-[#93e2ae] hover:border-[#355e3b] hover:bg-[#93e2ae] hover:cursor-pointer transition-all">Edit restaurant</button>
-        <button onClick={() => deleteRestaurant()} className="p-2 border-2 rounded-lg border-[#93e2ae] hover:border-[#355e3b] hover:bg-[#93e2ae] hover:cursor-pointer transition-all">Delete restaurant</button>
+        <p className="text-sm">Deleting a restaurant is possible through the control users page.</p>
       </div>
       <div className="flex flex-col gap-2">
         <img className="border-2 rounded-lg border-[#93e2ae]" src={img} alt="restaurant image" />

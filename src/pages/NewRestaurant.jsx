@@ -11,12 +11,13 @@ function NewRestaurant() {
   const [name, setName] = useState("")
   const [address, setAddress] = useState("")
   const [img, setImg] = useState("")
-
+  const [psw, setPsw] = useState("")
+  const [psw2, setPsw2] = useState("")
   async function newRestaurant() {
     const resp = await fetch(url + "/restaurant", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ restaurant_name: name, restaurant_address: address, restaurant_picture: img })
+      body: JSON.stringify({ restaurant_name: name, restaurant_address: address, restaurant_picture: img, password: psw })
     })
     const json = await resp.json()
     if (json.status == "Created") alert("New restaurant made!")
@@ -33,17 +34,25 @@ function NewRestaurant() {
               </div>
       <div className="flex gap-2 ">
         <div className="flex flex-col gap-2">
-          <div>
+          <div className="flex justify-between">
             <label className="mr-3" htmlFor="restaurantName">Name: </label>
             <input className="p-2 border-2 rounded-lg border-[#93e2ae] hover:border-[#355e3b] transition-all" id="restaurantName" type="text" value={name} onChange={(e) => setName(e.target.value)} />
           </div>
-          <div>
+          <div className="flex justify-between">
             <label htmlFor="restaurantAddress">Address: </label>
             <input className="p-2 border-2 rounded-lg border-[#93e2ae] hover:border-[#355e3b] transition-all" id="restaurantName" type="text" value={address} onChange={(e) => setAddress(e.target.value)} />
           </div>
-          <div>
+          <div className="flex justify-between">
             <label className="mr-2" htmlFor="restaurantPicture">Picture: </label>
             <input className="p-2 border-2 rounded-lg border-[#93e2ae] hover:border-[#355e3b] transition-all" id="restaurantName" type="text" value={img} onChange={(e) => setImg(e.target.value)} />
+          </div>
+          <div className="flex justify-between">
+            <label className="mr-2" htmlFor="restaurantPicture">Password: </label>
+            <input className="p-2 border-2 rounded-lg border-[#93e2ae] hover:border-[#355e3b] transition-all" id="restaurantName" type="password" value={psw} onChange={(e) => setPsw(e.target.value)} />
+          </div>
+          <div className="flex justify-between">
+            <label className="mr-2" htmlFor="restaurantPicture">Again: </label>
+            <input className="p-2 border-2 rounded-lg border-[#93e2ae] hover:border-[#355e3b] transition-all" id="restaurantName" type="password" value={psw2} onChange={(e) => setPsw2(e.target.value)} />
           </div>
           <button className="p-2 border-2 rounded-lg border-[#93e2ae] hover:border-[#355e3b] hover:bg-[#93e2ae] hover:cursor-pointer transition-all" onClick={() => newRestaurant()}>New restaurant</button>
         </div>

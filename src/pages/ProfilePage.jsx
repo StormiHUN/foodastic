@@ -7,14 +7,16 @@ import { useNavigate } from 'react-router-dom'
 const ProfilePage = () => {
 
   const navigate = useNavigate()
-  const {user, setUser} = useContext(UserContext)
+  const { user, setUser } = useContext(UserContext)
 
 
   useEffect(() => {
-    if (user.role == "user") navigate("/user/user") 
-    else if (user.role == "admin") navigate("/user/admin")
-    else if (user.role == "restaurant") navigate("/user/restaurant")
-    else{
+    try {
+      if (user.role == "user") navigate("/user/user")
+      else if (user.role == "admin") navigate("/user/admin")
+      else if (user.role == "restaurant") navigate("/user/restaurant")
+    }
+    catch {
       setUser(undefined)
       navigate("/login")
     }
@@ -23,7 +25,7 @@ const ProfilePage = () => {
   return (
     <div>
 
-      <input type='button' onClick={() => {navigate("/login").then(setUser(undefined))}} value={"Logout user: " + user.email}/>
+      <input type='button' onClick={() => { navigate("/login").then(setUser(undefined)) }} value={"How did you get here? You can leave by clicking this text."} />
 
     </div>
   )
