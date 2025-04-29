@@ -52,7 +52,7 @@ function EditRestaurant() {
         </div>
         <div>
           <label htmlFor="restaurantAddress">Address: </label>
-          <input className="ml-2 p-2 border-2 rounded-lg border-[#93e2ae] hover:border-[#355e3b] transition-all" type="text" id="restaurantAddress" value={address} onChange={(e) => setaddress(e.target.value)} />
+          <input className="ml-2 p-2 border-2 rounded-lg border-[#93e2ae] hover:border-[#355e3b] transition-all" type="text" id="restaurantAddress" value={address} onChange={(e) => setAddress(e.target.value)} />
         </div>
         <div>
           <label className="mr-5" htmlFor="restaurantImage">Image: </label>
