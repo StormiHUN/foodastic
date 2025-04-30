@@ -4,7 +4,6 @@ import { UrlContext } from "../App";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Arrow from "../assets/arrow.svg"
-import { UserContext } from '../App'
 
 function NewRestaurant() {
   const turl = useContext(UrlContext)
@@ -28,16 +27,7 @@ function NewRestaurant() {
     }
   }
   
-  useEffect(() => {
-    try {
-      if (user.role != "admin") {
-        navigate("/")
-      }
-    } catch {
-      setUser(undefined)
-      navigate("/")
-    }
-  }, [])
+  
 
   return (
     <div className="w-fit mx-auto border-2 rounded-lg border-[#93e2ae] bg-white p-4">
