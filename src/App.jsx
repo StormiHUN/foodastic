@@ -18,7 +18,6 @@ import EditFood from "./pages/EditFood"
 import ControlUsers from "./pages/ControlUsers";
 import ControlRestaurants from "./pages/ControlRestaurants";
 import NewFood from "./pages/NewFood";
-import ControlRestaurant from "./components/ControlRestaurant";
 import EditRestaurant from "./pages/EditRestaurant"
 import NewRestaurant from "./pages/NewRestaurant";
 import FinalOrder from "./pages/FinalOrder";
