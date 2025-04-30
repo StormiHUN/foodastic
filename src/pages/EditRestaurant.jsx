@@ -16,9 +16,9 @@ function EditRestaurant() {
   const [img, setImg] = useState("")
 
   async function editRestaurant() {
-    const resp = await fetch(url + "/restaurant/" + restaurant.restaurant_id,{
+    const resp = await fetch(url + "/restaurant/" + restaurant.restaurant_id, {
       method: "PUT",
-      headers: {"Content-Type" : "application/json"},
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         restaurant_name: name,
         restaurant_address: address,
@@ -26,13 +26,21 @@ function EditRestaurant() {
       })
     })
     const json = await resp.json()
-    if(json.status == "OK"){
+    if (json.status == "OK") {
       alert("restaurant data has been modified!")
     }
   }
 
 
   useEffect(() => {
+    try {
+      if (user.role != "admin") {
+        navigate("/")
+      }
+    } catch {
+      setUser(undefined)
+      navigate("/")
+    }
     async function getRestaurant() {
       const resp = await fetch(url + "/restaurant/" + id)
       const json = await resp.json()

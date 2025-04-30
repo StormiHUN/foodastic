@@ -12,6 +12,7 @@ import Mollusk from "../assets/mollusk.png"
 import Nuts from "../assets/nuts.png"
 import Soy from "../assets/soy.png"
 import FancyRadio from '../components/FancyRadio'
+import { useEffect } from "react";
 function NewFood() {
 
   const navigate = useNavigate()
@@ -20,6 +21,7 @@ function NewFood() {
   const [name, setName] = useState("")
   const [price, setPrice] = useState("")
   const [img, setImg] = useState("")
+  const [kcal, setKcal] = useState("")
   const [gluten, setGluten] = useState(true)
   const [lactose, setLactose] = useState(true)
   const [nuts, setNuts] = useState(true)
@@ -29,6 +31,7 @@ function NewFood() {
   const [soy, setSoy] = useState(true)
 
   async function newFood() {
+
     const resp = await fetch(url + "/food", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -36,14 +39,17 @@ function NewFood() {
         name: name,
         price: price,
         image: img,
+        kcal: kcal,
         allergens: JSON.stringify(
-          {gluten: !gluten,
-          lactose: !lactose,
-          nuts: !nuts,
-          mollusk: !mollusk,
-          fish: !fish,
-          egg: !egg,
-          soy: !soy}
+          {
+            gluten: !gluten,
+            lactose: !lactose,
+            nuts: !nuts,
+            mollusk: !mollusk,
+            fish: !fish,
+            egg: !egg,
+            soy: !soy
+          }
         )
       })
     })
@@ -52,6 +58,17 @@ function NewFood() {
     if (json.status == "Created") alert("New food made!")
     else if (json.error) alert("Error: " + json.error)
   }
+
+  useEffect(() => {
+    try {
+      if (user.role != "admin") {
+        navigate("/")
+      }
+    } catch {
+      setUser(undefined)
+      navigate("/")
+    }
+  }, [])
 
   return (
     <div className="mx-auto rounded-lg border-2 border-[#93e2ae] w-fit p-4 bg-white ">
@@ -73,8 +90,12 @@ function NewFood() {
             <input className="ml-2 p-2 border-2 rounded-lg border-[#93e2ae] hover:border-[#355e3b] transition-all" type="number" id="foodPrice" value={price} onChange={(e) => setPrice(e.target.value)} />
           </div>
           <div>
-            <label htmlFor="foodName">Image: </label>
-            <input className="p-2 border-2 rounded-lg border-[#93e2ae] hover:border-[#355e3b] transition-all" type="text" id="foodName" value={img} onChange={(e) => setImg(e.target.value)} />
+            <label htmlFor="foodImg">Image: </label>
+            <input className="p-2 border-2 rounded-lg border-[#93e2ae] hover:border-[#355e3b] transition-all" type="text" id="foodImg" value={img} onChange={(e) => setImg(e.target.value)} />
+          </div>
+          <div>
+            <label htmlFor="foodKcal">Kcal: </label>
+            <input className="ml-4 p-2 border-2 rounded-lg border-[#93e2ae] hover:border-[#355e3b] transition-all" type="text" id="foodKcal" value={kcal} onChange={(e) => setKcal(e.target.value)} />
           </div>
           Allergens:
           <div className='smallScreenIcons'>

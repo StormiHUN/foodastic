@@ -16,12 +16,15 @@ const ChooseRestaurant = () => {
     const {cart, setCart} = useContext(CartContext)
     const {user, setUser} = useContext(UserContext)
 
-    const [restaurants, setRestaurants] = useState([{
-      restaurant_adress: "anyád hihi",
-      restaurant_picture: "https://placehold.co/450x300"
-    }])
+    const [restaurants, setRestaurants] = useState([])
   
     useEffect(() => {
+      try{
+        if(user.role == "user"){}
+      }catch{
+        setUser(undefined)
+        navigate("/")
+      }
       const getRestaurants = async () => {
         const resp = await fetch(url+"/restaurants")
         const json = await resp.json()

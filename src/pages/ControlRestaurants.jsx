@@ -26,7 +26,12 @@ function ControlRestaurants() {
     }
 
     useEffect(() => {
-        if(user.role != "admin"){
+        try{
+            if(user.role != "admin"){
+                navigate("/")
+            }
+        }catch{
+            setUser(undefined)
             navigate("/")
         }
         getFoods()

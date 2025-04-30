@@ -25,13 +25,24 @@ function NewRestaurant() {
       alert(json.error)
     }
   }
+  
+  useEffect(() => {
+    try {
+      if (user.role != "admin") {
+        navigate("/")
+      }
+    } catch {
+      setUser(undefined)
+      navigate("/")
+    }
+  }, [])
 
   return (
     <div className="w-fit mx-auto border-2 rounded-lg border-[#93e2ae] bg-white p-4">
       <div onClick={() => navigate("/controlRestaurants")} className="mb-2 flex gap-1 border-2 border-[#93e2ae] rounded-lg p-4 w-fit hover:cursor-pointer hover:bg-[#93e2ae] hover:border-[#355e3b] transition-all">
-                <img className="w-[36px] h-[36px] rotate-180" src={Arrow} />
-                <span className="text-xl mt-0.5">Back</span>
-              </div>
+        <img className="w-[36px] h-[36px] rotate-180" src={Arrow} />
+        <span className="text-xl mt-0.5">Back</span>
+      </div>
       <div className="flex gap-2 ">
         <div className="flex flex-col gap-2">
           <div className="flex justify-between">

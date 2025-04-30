@@ -14,34 +14,44 @@ function EditFood() {
   const [name, setName] = useState("")
   const [price, setPrice] = useState("")
   const [img, setImg] = useState("")
+  const [kcal, setKcal] = useState(0)
 
   async function editFood() {
-    const resp = await fetch(url + "/food/" + food.food_id,{
+    const resp = await fetch(url + "/food/" + food.food_id, {
       method: "PUT",
-      headers: {"Content-Type" : "application/json"},
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         name: name,
         price: price,
-        image: img
+        image: img,
+        kcal: kcal
       })
     })
     const json = await resp.json()
-    if(json.status == "OK"){
+    if (json.status == "OK") {
       alert("Food data has been modified!")
     }
   }
 
   async function deleteFood() {
-    const resp = await fetch(url + "/food/" + food.food_id,{
+    const resp = await fetch(url + "/food/" + food.food_id, {
       method: "DELETE",
-      headers: {"Content-Type" : "application/json"}
+      headers: { "Content-Type": "application/json" }
     })
     const json = await resp.json()
-    if(json.status == "OK") alert("Food deleted")
-    else if(json.error) alert("Error: " + json.error)
+    if (json.status == "OK") alert("Food deleted")
+    else if (json.error) alert("Error: " + json.error)
   }
 
   useEffect(() => {
+    try {
+      if (user.role != "admin") {
+        navigate("/")
+      }
+    } catch {
+      setUser(undefined)
+      navigate("/")
+    }
     async function getFood() {
       const resp = await fetch(url + "/food/" + id)
       const json = await resp.json()
@@ -49,6 +59,7 @@ function EditFood() {
       setName(json[0].name)
       setPrice(json[0].price)
       setImg(json[0].image)
+      setKcal(json[0].kcal)
     }
     getFood()
   }, [])
@@ -64,8 +75,12 @@ function EditFood() {
           <input className="ml-2 p-2 border-2 rounded-lg border-[#93e2ae] hover:border-[#355e3b] transition-all" type="number" id="foodPrice" value={price} onChange={(e) => setPrice(e.target.value)} />
         </div>
         <div>
-          <label htmlFor="foodName">Image: </label>
-          <input className="p-2 border-2 rounded-lg border-[#93e2ae] hover:border-[#355e3b] transition-all" type="text" id="foodName" value={img} onChange={(e) => setImg(e.target.value)} />
+          <label htmlFor="foodImage">Image: </label>
+          <input className="p-2 border-2 rounded-lg border-[#93e2ae] hover:border-[#355e3b] transition-all" type="text" id="foodImage" value={img} onChange={(e) => setImg(e.target.value)} />
+        </div>
+        <div>
+          <label htmlFor="foodKcal">Kcal: </label>
+          <input className="ml-4 p-2 border-2 rounded-lg border-[#93e2ae] hover:border-[#355e3b] transition-all" type="text" id="foodKcal" value={kcal} onChange={(e) => setKcal(e.target.value)} />
         </div>
         <button onClick={() => editFood()} className="p-2 border-2 rounded-lg border-[#93e2ae] hover:border-[#355e3b] hover:bg-[#93e2ae] hover:cursor-pointer transition-all">Edit food</button>
         <button onClick={() => deleteFood()} className="p-2 border-2 rounded-lg border-[#93e2ae] hover:border-[#355e3b] hover:bg-[#93e2ae] hover:cursor-pointer transition-all">Delete food</button>
