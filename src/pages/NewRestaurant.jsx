@@ -4,6 +4,8 @@ import { UrlContext } from "../App";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Arrow from "../assets/arrow.svg"
+import { UserContext } from '../App'
+
 function NewRestaurant() {
   const turl = useContext(UrlContext)
   const url = turl.url

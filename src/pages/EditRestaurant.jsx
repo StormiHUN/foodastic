@@ -4,8 +4,11 @@ import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useContext } from "react";
 import { UrlContext } from "../App";
+import { UserContext } from '../App'
+
 function EditRestaurant() {
 
+  const { user, setUser } = useContext(UserContext)
   const navigate = useNavigate()
   const turl = useContext(UrlContext)
   const url = turl.url

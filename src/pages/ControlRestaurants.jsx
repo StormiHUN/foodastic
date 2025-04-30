@@ -6,7 +6,6 @@ import { useContext } from "react";
 import { Link, Outlet, useHref, useNavigate } from "react-router-dom";
 import { UrlContext } from "../App";
 import Arrow from "../assets/arrow.svg";
-import ControlFood from "../components/ControlFood";
 import Close from "../assets/close.svg"
 import ControlRestaurant from "../components/ControlRestaurant";
 function ControlRestaurants() {

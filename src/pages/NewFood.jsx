@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { UrlContext } from "../App";
 import Arrow from "../assets/Arrow.svg"
@@ -13,6 +13,7 @@ import Nuts from "../assets/nuts.png"
 import Soy from "../assets/soy.png"
 import FancyRadio from '../components/FancyRadio'
 import { useEffect } from "react";
+
 function NewFood() {
 
   const navigate = useNavigate()
@@ -60,14 +61,6 @@ function NewFood() {
   }
 
   useEffect(() => {
-    try {
-      if (user.role != "admin") {
-        navigate("/")
-      }
-    } catch {
-      setUser(undefined)
-      navigate("/")
-    }
   }, [])
 
   return (

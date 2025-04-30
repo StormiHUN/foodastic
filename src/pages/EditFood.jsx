@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useContext } from "react";
 import { UrlContext } from "../App";
+
 function EditFood() {
 
   const navigate = useNavigate()
@@ -44,14 +45,6 @@ function EditFood() {
   }
 
   useEffect(() => {
-    try {
-      if (user.role != "admin") {
-        navigate("/")
-      }
-    } catch {
-      setUser(undefined)
-      navigate("/")
-    }
     async function getFood() {
       const resp = await fetch(url + "/food/" + id)
       const json = await resp.json()
